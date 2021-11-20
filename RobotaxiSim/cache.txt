@@ -30,3 +30,8 @@
 {"latitude": 48.17080655960506, "longitude": 11.57413589733551, "length": 8.324628564346755, "restrictions": ""}
 {"latitude": 48.15873574836303, "longitude": 11.586406110635293, "length": 9.679417247411699, "restrictions": ""}
 {"latitude": 48.18822347752891, "longitude": 11.465923563349197, "length": 4.0987941628595985, "restrictions": ""}
+{"latitude": 48.13960462625839, "longitude": 11.609421396337023, "length": 8.384436359730929, "restrictions": ""}
+{"latitude": 48.21314050255171, "longitude": 11.566164345458377, "length": 9.2655635803746, "restrictions": ""}
+{"latitude": 48.15840192380516, "longitude": 11.58622707827885, "length": 4.313842124641944, "restrictions": ""}
+{"latitude": 48.132869199999995, "longitude": 11.5678608, "length": 9.793688024878414, "restrictions": ""}
+{"latitude": 48.128732110742405, "longitude": 11.572190928899582, "length": 9.710201079981553, "restrictions": ""}
