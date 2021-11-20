@@ -1,6 +1,26 @@
 import React, {useState, Component} from "react";
 import Slider from '@mui/material/Slider';
-import { render } from "react-dom";
+
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      // light: will be calculated from palette.primary.main,
+      main: '#ff44ff',
+      // dark: will be calculated from palette.primary.main,
+      // contrastText: will be calculated to contrast with palette.primary.main
+    },
+    secondary: {
+      light: '#0066ff',
+      main: '#0044ff',
+      // dark: will be calculated from palette.secondary.main,
+      contrastText: '#ffcc00',
+    },
+    contrastThreshold: 3,
+    tonalOffset: 0.2,
+  },
+});
 
 export default function CarLengthSlider({setCarLength}) {
     const marks = [
@@ -50,7 +70,10 @@ export default function CarLengthSlider({setCarLength}) {
             min={3}
             max={10}
             valueLabelDisplay="off"
-            
+            sx={{display: 'flex',
+                width: '75%',
+                alignItems: 'center',
+                marginLeft: '12.5%'}}
         />
     )
 }
