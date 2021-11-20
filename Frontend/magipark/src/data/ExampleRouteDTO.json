@@ -1,0 +1,36 @@
+{
+	"driverId": 5, 
+	"legDTOs": [
+		{
+			"id": -1, 
+			"destinationPosition": {"latitude": 11.624609842136843, "longitude": 48.09091608278328}, 
+			"destinationAddress": {
+				"street": "not defined", 
+				"houseNumber": "not defined", 
+				"postalCode": "not defined", 
+				"city": "not defined"},
+			"nodes": [
+				{"latitude": 11.613686837398912, "longitude": 48.103008085396866}, 
+				{"latitude": 11.61495902858346, "longitude": 48.108918785595726}, 
+				{"latitude": 11.615380385150104, "longitude": 48.1112386281596}, 
+				{"latitude": 11.61483168640546, "longitude": 48.111961719721805}, 
+				{"latitude": 11.61443611822348, "longitude": 48.1116822769088}, 
+				{"latitude": 11.614471005380265, "longitude": 48.11138030215164}, 
+				{"latitude": 11.614754788626275, "longitude": 48.111023597083644}, 
+				{"latitude": 11.614663115489488, "longitude": 48.108698997262856}, 
+				{"latitude": 11.613373277488144, "longitude": 48.10289575400433}, 
+				{"latitude": 11.616943062784667, "longitude": 48.08647689044837}, 
+				{"latitude": 11.619466182753833, "longitude": 48.08406154930742}, 
+				{"latitude": 11.619736317725284, "longitude": 48.084038137536226}, 
+				{"latitude": 11.622759480239928, "longitude": 48.083987541241285}, 
+				{"latitude": 11.623044386210518, "longitude": 48.084112633282786}, 
+				{"latitude": 11.624609459548045, "longitude": 48.090914684321916}, 
+				{"latitude": 11.624609842136843, "longitude": 48.09091608278328}
+			], 
+			"joiningRequests": [], 
+			"leavingRequests": [1], 
+			"legDistance": 5510.947746388573, 
+			"legDuration": 229.4204186102704
+		}
+	]
+}
