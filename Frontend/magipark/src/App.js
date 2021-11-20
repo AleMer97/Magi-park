@@ -1,15 +1,22 @@
 import './index.css';
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import apiHandler from './utils/ApiHandler';
 
 import CarLengthSlider from "./components/lengthSlider";
-import ChooseMapButton from "./components/MapChooseButton";
+import ChooseMapButton from "./components/ChooseMapButton";
 
 import ShortTermMap from "./components/ShortTermMap";
 import LongTermMap from './components/LongTermMap';
 
-import { geolocated } from "react-geolocated";
+import GeoLocation from './utils/Geolocation';
+
+import ScrollLock, { TouchScrollable } from 'react-scrolllock';
+import axios from 'axios';
+
 
 function App() {
+  const AH = new apiHandler();
+
   const [carLength, setCarLength] = useState(6);
 
   const [showLongTerm, setShowLongTerm] = useState(false);
@@ -18,29 +25,35 @@ function App() {
   }
 
   return (
-    <div  class="grid place-items-center h-1/3">
-      
-        <h2>
-          Magi-park
-        </h2>
-        <p>
-          Find a parking spot. The easy way.
-        </p>
+    <ScrollLock>
+      <div  class="flex flex-col place-items-center min-h-screen ">
         
-        <CarLengthSlider setCarLength={setCarLength}/>
-        <p>The length is: {carLength}</p>
+        <div class="flex-grow-0 top-0 w-full">
+          <h2 class="bg-gray-800 text-white text-center font-bold text-2xl md:text-2xl py-4">
+            Magi-park
+            <p class="text-gray-300 font-normal text-base pb-2">
+              Find a parking spot. The easy way.
+            </p>
+          </h2>
+        </div>
+        <div class="w-full md:w-1/2 border">
+          <p class="pt-4 text-center font-semibold w-full">Set the length of your car:</p>
+          <CarLengthSlider setCarLength={setCarLength} class="w-full"/>
+          {/* <p>The length is: {carLength}</p> */}
+          
+          <ChooseMapButton showLongTerm={showLongTerm} handleLongTerm={handleLongTerm}/>
+          {/* <p>Which map: {showLongTerm?"Long term":"Short term"}</p> */}
         
-        <ChooseMapButton showLongTerm={showLongTerm} handleLongTerm={handleLongTerm}/>
-        <p>Which map: {showLongTerm?"Long term":"Short term"}</p>
-      
-        <p>{geolocated.isGeolocationAvailable}</p>
-        
+          {/* <p>{geolocated.isGeolocationAvailable}</p> */}
+          <GeoLocation/>
+        </div>
 
-        {showLongTerm? <LongTermMap/> : <ShortTermMap/>}
+        <div class="flex-grow w-full">{showLongTerm? <LongTermMap/> : <ShortTermMap/>}</div>
 
         
-
-    </div>
+        {/* {getParkingSpot(47.7,11.5,20,3.0)} */}
+      </div>
+    </ScrollLock>
   );
 }
 

@@ -14,6 +14,11 @@ export default function ChooseMapButton({showLongTerm, handleLongTerm}) {
               <Switch checked={showLongTerm} onChange={handleLongTerm} name="longtermswitch" />
             }
             label="Show Long-term map"
+            labelPlacement="start"
+            sx={{display: 'flex',
+                width: '75%',
+                alignItems: 'center',
+                }}
           />
         </FormGroup>
     )
