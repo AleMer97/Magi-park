@@ -47,7 +47,7 @@ streets = load_json('data.json')
 
 while True:
     body = get_parkingspot()
+    print(body)
     if body != None:
-        response = requests.post("http://10.0.0.146:8080/Magipark" ,data=body ,timeout=2)
-        print(response)
-    time.sleep(10)
+        response = requests.post("http://10.0.0.20:8080/addParkingSpot" ,data={'data': json.dumps(body)} ,timeout=2)
+    time.sleep(0.5)
