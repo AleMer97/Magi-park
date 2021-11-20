@@ -1,9 +1,9 @@
 import re
 import json
 import googlemaps
-from configparser import SafeConfigParser
+from configparser import ConfigParser
 
-parser = SafeConfigParser()
+parser = ConfigParser()
 parser.read('settings.ini')
 
 print('Key: ' + parser.get('google_maps', 'key'))
