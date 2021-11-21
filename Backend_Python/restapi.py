@@ -5,6 +5,7 @@ from geopy import distance
 from datetime import datetime as dt
 from configparser import ConfigParser
 import json
+import random
 import os
 import googlemaps
 
@@ -51,6 +52,12 @@ class AddParkingSpot(Resource):
         print(str(parkingsspots))
         return
 
+class DelParkingSpot(Resource):
+    def get(self):
+        rand = random.randrange(0,len(parkingsspots)-1,1)
+        parkingsspots.pop(rand)
+        return
+
 class GetLocation(Resource):
     def post(self):
         loc = request.form['location']
@@ -61,6 +68,7 @@ class GetLocation(Resource):
         
 
 api.add_resource(AddParkingSpot, '/addParkingSpot')
+api.add_resource(DelParkingSpot, '/delParkingSpot')
 api.add_resource(GetParkingSpot, '/getParkingSpot')
 api.add_resource(GetLocation, '/getLocation')
 
