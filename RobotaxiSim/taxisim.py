@@ -70,7 +70,7 @@ print('Key: ' + parser.get('google_maps', 'key'))
 gmaps = googlemaps.Client(key=parser.get('google_maps', 'key'))
 streets = load_json('data.json')
 
-load_cache()
+#load_cache()
 
 while True:
     body = get_parkingspot()
