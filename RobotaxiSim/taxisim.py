@@ -43,7 +43,7 @@ def load_cache():
     f = open(cachefilename, "r")
     for line in f:
         line = line.rstrip('\n')
-        response = requests.post(addspoturl, data={'data': line}, timeout=2)
+        response = requests.post(addspoturl + "addParkingSpot", data={'data': line}, timeout=2)
 
 
 def get_parkingspot():
@@ -76,6 +76,8 @@ while True:
     body = get_parkingspot()
     print(body)
     if body != None:
-        append_new_line(body)
-        response = requests.post(addspoturl ,data={'data': json.dumps(body)} ,timeout=2)
-    time.sleep(2)
+        #append_new_line(body)
+        response = requests.post(addspoturl + "addParkingSpot",data={'data': json.dumps(body)} ,timeout=2)
+        time.sleep(1)
+        response = requests.get(addspoturl + "delParkingSpot",timeout=2)
+        time.sleep(1)
