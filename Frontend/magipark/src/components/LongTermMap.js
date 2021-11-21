@@ -29,7 +29,7 @@ const LongTermMap = () => {
             <MapContainer 
                 center={user_location} 
                 zoom={zoom}
-                style={{ height: '460px', width: '100%' }}
+                style={{ height: '480px', width: '100%' }}
             >
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

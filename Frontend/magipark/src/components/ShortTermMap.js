@@ -69,7 +69,7 @@ function ShortTermMap (props) {
                     center={location} 
                     zoom={zoom}
                     
-                    style={{ height: '460px', width: '100%' }}
+                    style={{ height: '480px', width: '100%' }}
                 >
                     {/* <GetBounds/> */}
                     {/*

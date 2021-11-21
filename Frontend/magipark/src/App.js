@@ -69,7 +69,7 @@ function App() {
           </h2>
         </div>
 
-        <div class="w-full md:w-1/2">
+        <div class="w-full md:w-1/2 pb-4">
           <p class="pt-4 text-center font-semibold w-full">Set the length of your car:</p>
           <CarLengthSlider setCarLength={setCarLength} class="w-full"/>
           {/* <p>The length is: {carLength}</p> */}
