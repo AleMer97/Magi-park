@@ -29,15 +29,27 @@ function App() {
   const [location, setLocation] = useState([latitude, longitude]);
 
   const [emptySpots, setEmptySpots] = useState([]);
-    useEffect(() => {
-        axios.get('getParkingSpot?lat='+location[0]+'&lon='+location[1]+'&radius=20&length='+carLength)
+  const getSpots = async () => {
+    try{
+      axios.get('getParkingSpot?lat='+location[0]+'&lon='+location[1]+'&radius=20&length='+carLength)
         .then((res) => {
             console.log(res.data);
             setEmptySpots(res.data);
         }).catch(err => {
           console.log(err.message)
       });
-    }, [carLength]);
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getSpots()
+    }, 2000)
+    
+    return () => clearInterval(interval)
+  }, [carLength]);
 
   return (
     <ScrollLock>

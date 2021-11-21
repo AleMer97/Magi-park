@@ -63,7 +63,6 @@ function ShortTermMap (props) {
 
     return(
         <div class="h-full w-full">
-            <p class="h-auto">Shortterm Map</p>
             
             <div class="h-full">
                 <MapContainer 
