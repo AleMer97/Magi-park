@@ -45,7 +45,7 @@ function App() {
         
         <div class="flex-grow-0 top-0 w-full">
           <h2 class="bg-gray-800 text-white text-center font-bold text-2xl md:text-2xl py-4">
-            Magi-park
+            MagiPark
             <p class="text-gray-300 font-normal text-base pb-2">
               Find a parking spot. The easy way.
             </p>
@@ -63,6 +63,8 @@ function App() {
           {/* <p>{geolocated.isGeolocationAvailable}</p> */}
           {/* <GeoLocation/> */}
         </div>
+
+        {console.log('time passed', Date())}
 
         <div class="flex-grow w-full">{showLongTerm? <LongTermMap/> : <ShortTermMap location={location} emptySpots={emptySpots} carLength={carLength}/>}</div>
 

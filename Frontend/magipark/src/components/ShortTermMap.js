@@ -6,6 +6,10 @@ import apiHandler from "../utils/ApiHandler";
 
 import exampleRoute from "../data/ExampleRouteDTO.json"
 
+import parkingDark from "../data/parkingDark.svg"
+import parkingGreen from "../data/parkingGreen.svg"
+
+
 function GetBounds() {  
     let map = useMap();
     console.log('map bounds:', map.getBounds());
@@ -30,6 +34,32 @@ function ShortTermMap (props) {
     const location = props.location
     const emptySpots = props.emptySpots
     const carLength = props.carLength
+
+    const [activeSpot, setActiveSpot] = useState(null);
+
+    const L = require('leaflet');
+
+    const darkParkingIcon = L.icon({
+        iconUrl: parkingDark,
+        iconRetinaUrl: parkingDark,
+        iconSize: [64,64],
+        iconAnchor: [32, 64],
+        popupAnchor: null,
+        shadowUrl: null,
+        shadowSize: null,
+        shadowAnchor: null
+    });
+
+    const greenParkingIcon = L.icon({
+        iconUrl: parkingGreen,
+        iconRetinaUrl: parkingGreen,
+        iconSize: [64,64],
+        iconAnchor: [32, 64],
+        popupAnchor: null,
+        shadowUrl: null,
+        shadowSize: null,
+        shadowAnchor: null
+    });
 
     return(
         <div class="h-full w-full">
@@ -65,32 +95,34 @@ function ShortTermMap (props) {
                                 position={[
                                     spot.latitude,spot.longitude
                                 ]}
+                                icon={darkParkingIcon}
                         
-                            //     onClick={() => {
-                            //         setActiveShop(shop);
-                            // }}
+                                onClick={() => {
+                                    setActiveSpot(spot);
+                            }}
                             />
                         ):(null)
                         
                     ))};
 
-                    {/* {activeShop && (
+                    {activeSpot && (
                         <Popup
                         position={[
                             0,0
                         ]}
                         onClose={() => {
-                            setActiveShop(null);
+                            setActiveSpot(null);
                         }}
                         >
                         <div>
-                            <h2>{activeShop.tags.name}</h2>
-                            <p>{activeShop.tags.opening_hours}</p>
-                            <p>{activeShop.lat}</p>
-                            <p>{activeShop.lon}</p>
+                            <h2>{activeSpot.timestamp}</h2>
+                            <p>{activeSpot.length}</p>
+                            <p>{activeSpot.latitude}</p>
+                            <p>{activeSpot.longitude}</p>
+                            <p>{activeSpot.restriction}</p>
                         </div>
                         </Popup>
-                    )} */}
+                    )}
                 </MapContainer>
             </div>
         </div>
