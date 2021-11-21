@@ -15,34 +15,21 @@ function GetBounds() {
 
 
 
-function ShortTermMap () {
-
-    const longitude = 11.5318421
-    const latitude = 48.1123884
-
-    const [location, setLocation] = useState([latitude, longitude]);
+function ShortTermMap (props) {
 
     const zoom = 16;
 
-    const exroute = exampleRoute.legDTOs.map(leg => leg.nodes.map(node => [node.longitude, node.latitude]))
+    // const exroute = exampleRoute.legDTOs.map(leg => leg.nodes.map(node => [node.longitude, node.latitude]))
 
-    const deliveryZone = [[48.152329, 11.582429],
-                        [48.152329, 11.59],
-                        [48.136, 11.594],
-                [48.13, 11.582429]]
+    // const deliveryZone = [[48.152329, 11.582429],
+    //                     [48.152329, 11.59],
+    //                     [48.136, 11.594],
+    //             [48.13, 11.582429]]
     
     // useEffect(())
-
-    const [emptySpots, setEmptySpots] = useState([]);
-    useEffect(() => {
-        axios.get('getParkingSpot?lat=47.7&lon=11.5&radius=200&length=3.0')
-        .then((res) => {
-            console.log(res.data);
-            setEmptySpots(res.data);
-        }).catch(err => {
-            console.log(err)
-        });
-        }, []);
+    const location = props.location
+    const emptySpots = props.emptySpots
+    const carLength = props.carLength
 
     return(
         <div class="h-full w-full">
@@ -55,36 +42,39 @@ function ShortTermMap () {
                     
                     style={{ height: '460px', width: '100%' }}
                 >
-                    <GetBounds/>
+                    {/* <GetBounds/> */}
                     <TileLayer
                         url="https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.{ext}"
                         attribution='<a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>'
                         subdomains= 'abcd'
-                        minZoom= {10}
+                        minZoom= {0}
                         maxZoom= {18}
                         ext= 'png'
                     />
 
-                    <Polygon 
+                    {/* <Polygon 
                         positions={deliveryZone}
-                    />
+                    /> */}
                     
                     <Marker position={location}/>
 
-                    <Polyline positions={exroute}/>
-                    {/* {coffee.elements.map(shop => (
-                        <Marker
-                            key={shop.id}
-                            position={[
-                                0,0
-                            ]}
-                            onClick={() => {
-                                setActiveShop(shop);
-                        }}
-                        />
-                    ))}
+                    {/* <Polyline positions={exroute}/> */}
+                    {emptySpots.map(spot => (
+                        (spot.length > carLength)?(
+                            <Marker
+                                position={[
+                                    spot.latitude,spot.longitude
+                                ]}
+                        
+                            //     onClick={() => {
+                            //         setActiveShop(shop);
+                            // }}
+                            />
+                        ):(null)
+                        
+                    ))};
 
-                    {activeShop && (
+                    {/* {activeShop && (
                         <Popup
                         position={[
                             0,0

@@ -8,7 +8,7 @@ import ChooseMapButton from "./components/ChooseMapButton";
 import ShortTermMap from "./components/ShortTermMap";
 import LongTermMap from './components/LongTermMap';
 
-import GeoLocation from './utils/Geolocation';
+// import GeoLocation from './utils/Geolocation';
 
 import ScrollLock, { TouchScrollable } from 'react-scrolllock';
 import axios from 'axios';
@@ -24,6 +24,21 @@ function App() {
     setShowLongTerm(event.target.checked)
   }
 
+  const longitude = 11.5318421
+  const latitude = 48.1123884
+  const [location, setLocation] = useState([latitude, longitude]);
+
+  const [emptySpots, setEmptySpots] = useState([]);
+    useEffect(() => {
+        axios.get('getParkingSpot?lat='+location[0]+'&lon='+location[1]+'&radius=20&length='+3)
+        .then((res) => {
+            console.log(res.data);
+            setEmptySpots(res.data);
+        }).catch(err => {
+          console.log(err.message)
+      });
+    }, []);
+
   return (
     <ScrollLock>
       <div  class="flex flex-col place-items-center min-h-screen ">
@@ -36,6 +51,7 @@ function App() {
             </p>
           </h2>
         </div>
+
         <div class="w-full md:w-1/2 border">
           <p class="pt-4 text-center font-semibold w-full">Set the length of your car:</p>
           <CarLengthSlider setCarLength={setCarLength} class="w-full"/>
@@ -45,10 +61,10 @@ function App() {
           {/* <p>Which map: {showLongTerm?"Long term":"Short term"}</p> */}
         
           {/* <p>{geolocated.isGeolocationAvailable}</p> */}
-          <GeoLocation/>
+          {/* <GeoLocation/> */}
         </div>
 
-        <div class="flex-grow w-full">{showLongTerm? <LongTermMap/> : <ShortTermMap/>}</div>
+        <div class="flex-grow w-full">{showLongTerm? <LongTermMap/> : <ShortTermMap location={location} emptySpots={emptySpots} carLength={carLength}/>}</div>
 
         
         {/* {getParkingSpot(47.7,11.5,20,3.0)} */}
