@@ -1,6 +1,8 @@
 import re
 import time
 import json
+
+from requests.api import request
 import googlemaps
 import random
 import requests
@@ -24,6 +26,26 @@ def get_rand_in_range(lower, greater):
 def get_spotlen():
     return get_rand_in_range(2, 10)
 
+
+def append_new_line(dictionary):
+    """Append given text as a new line at the end of file"""
+    with open(cachefilename, "a+") as file_object:
+        # Move read cursor to the start of file.
+        file_object.seek(0)
+        # If file is not empty then append '\n'
+        data = file_object.read(100)
+        if len(data) > 0:
+            file_object.write("\n")
+        # Append text at the end of file
+        file_object.write(json.dumps(dictionary))
+
+def load_cache():
+    f = open(cachefilename, "r")
+    for line in f:
+        line = line.rstrip('\n')
+        response = requests.post(addspoturl, data={'data': line}, timeout=2)
+
+
 def get_parkingspot():
     randstreet = streets[random.randrange(0,len(streets)-1,1)]
     print("Origional: " + randstreet['street'])
@@ -41,13 +63,19 @@ def get_parkingspot():
 parser = ConfigParser()
 parser.read('settings.ini')
 
+cachefilename = parser.get('general', 'cachefilename')
+addspoturl = parser.get('general', 'addspoturl')
+
 print('Key: ' + parser.get('google_maps', 'key'))
 gmaps = googlemaps.Client(key=parser.get('google_maps', 'key'))
 streets = load_json('data.json')
+
+load_cache()
 
 while True:
     body = get_parkingspot()
     print(body)
     if body != None:
-        response = requests.post("http://10.0.0.20:8080/addParkingSpot" ,data={'data': json.dumps(body)} ,timeout=2)
-    time.sleep(0.5)
+        append_new_line(body)
+        response = requests.post(addspoturl ,data={'data': json.dumps(body)} ,timeout=2)
+    time.sleep(1)
