@@ -24,12 +24,12 @@ const LongTermMap = () => {
                 [48.13, 11.582429]]
 
     return(
-        <div class="w-full h-1/2">
-            <p>Longterm Map</p>
+        <div class="w-full h-full">
+            
             <MapContainer 
                 center={user_location} 
                 zoom={zoom}
-                style={{ height: '50vh', width: '100%' }}
+                style={{ height: '460px', width: '100%' }}
             >
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
