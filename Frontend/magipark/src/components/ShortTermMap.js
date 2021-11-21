@@ -6,7 +6,7 @@ import apiHandler from "../utils/ApiHandler";
 
 import exampleRoute from "../data/ExampleRouteDTO.json"
 
-import parkingDark from "../data/parkingDark.svg"
+import parkingDark from "../data/parking-sign.svg"
 import parkingGreen from "../data/parkingGreen.svg"
 
 
@@ -42,8 +42,8 @@ function ShortTermMap (props) {
     const darkParkingIcon = L.icon({
         iconUrl: parkingDark,
         iconRetinaUrl: parkingDark,
-        iconSize: [64,64],
-        iconAnchor: [32, 64],
+        iconSize: [45,48],
+        iconAnchor: [24, 48],
         popupAnchor: null,
         shadowUrl: null,
         shadowSize: null,

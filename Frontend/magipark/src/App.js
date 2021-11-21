@@ -30,14 +30,14 @@ function App() {
 
   const [emptySpots, setEmptySpots] = useState([]);
     useEffect(() => {
-        axios.get('getParkingSpot?lat='+location[0]+'&lon='+location[1]+'&radius=20&length='+3)
+        axios.get('getParkingSpot?lat='+location[0]+'&lon='+location[1]+'&radius=20&length='+carLength)
         .then((res) => {
             console.log(res.data);
             setEmptySpots(res.data);
         }).catch(err => {
           console.log(err.message)
       });
-    }, []);
+    }, [carLength]);
 
   return (
     <ScrollLock>
