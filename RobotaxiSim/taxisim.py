@@ -78,4 +78,4 @@ while True:
     if body != None:
         append_new_line(body)
         response = requests.post(addspoturl ,data={'data': json.dumps(body)} ,timeout=2)
-    time.sleep(1)
+    time.sleep(10)

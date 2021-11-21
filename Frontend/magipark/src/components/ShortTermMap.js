@@ -73,6 +73,7 @@ function ShortTermMap (props) {
                     style={{ height: '460px', width: '100%' }}
                 >
                     {/* <GetBounds/> */}
+                    {/*
                     <TileLayer
                         url="https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.{ext}"
                         attribution='<a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>'
@@ -80,7 +81,12 @@ function ShortTermMap (props) {
                         minZoom= {0}
                         maxZoom= {18}
                         ext= 'png'
-                    />
+                    />*/}
+
+                <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                />
 
                     {/* <Polygon 
                         positions={deliveryZone}

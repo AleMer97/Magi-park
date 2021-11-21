@@ -1,7 +1,8 @@
 import React from "react";
-import { MapContainer, Marker, Popup, TileLayer, Polygon, Polyline } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, Polygon, Polyline,  ImageOverlay} from "react-leaflet";
 
 import exampleRoute from "../data/ExampleRouteDTO.json"
+import heatmap from "../data/heatmap.png"
 
 const LongTermMap = () => {
 
@@ -13,6 +14,9 @@ const LongTermMap = () => {
     const zoom = 12.5;
 
     const exroute = exampleRoute.legDTOs.map(leg => leg.nodes.map(node => [node.longitude, node.latitude]))
+
+    const L = require('leaflet');
+    const bounds = new L.LatLngBounds([48.009418, 11.385454], [48.277807, 11.777678])
 
     const deliveryZone = [[48.152329, 11.582429],
                         [48.152329, 11.59],
@@ -32,8 +36,12 @@ const LongTermMap = () => {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 />
 
-                <Polygon 
-                    positions={deliveryZone}
+                
+                <ImageOverlay
+                    url={heatmap}
+                    bounds={bounds} 
+                    opacity={0.5}
+                    zIndex={10}
                 />
                 
                 {/* <Marker position={user_location}/> */}
