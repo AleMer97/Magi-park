@@ -44,12 +44,17 @@ function App() {
   }
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      getSpots()
-    }, 2000)
-    
+    let interval = null;
+    if(showLongTerm) {
+      clearInterval(interval);
+    } else {
+      interval = setInterval(() => {
+        getSpots()
+      }, 1000)
+    }
+  
     return () => clearInterval(interval)
-  }, [carLength]);
+  }, [carLength, showLongTerm]);
 
   return (
     <ScrollLock>
